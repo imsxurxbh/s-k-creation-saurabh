@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SK CREATION | Premium Designer & Contractor</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --dark: #0f0f0f;
+            --gray: #1a1a1a;
+            --light: #ffffff;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal { animation: fadeIn 1s ease-out forwards; }
+
+        /* --- Header & Hero --- */
+        header {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+                        url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            border-bottom: 4px solid var(--gold);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            color: var(--gold);
+            margin: 0;
+            letter-spacing: 8px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .slogan {
+            font-size: 1.2rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: #ccc;
+            margin-top: 10px;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            background: rgba(26, 26, 26, 0.95);
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid #333;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        nav a:hover { color: var(--gold); }
+
+        /* --- Sections Style --- */
+        section { padding: 100px 10%; text-align: center; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--gold); margin-bottom: 50px; }
+
+        /* --- Cards & Grid --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--gray);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            transition: 0.4s;
+        }
+
+        .card:hover {
+            border-color: var(--gold);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+        }
+
+        .card h3 { color: var(--gold); font-size: 1.5rem; margin-bottom: 15px; }
+
+        /* --- Gallery --- */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.5s;
+            filter: grayscale(30%);
+        }
+
+        .gallery img:hover { filter: grayscale(0%); transform: scale(1.03); }
+
+        /* --- Lightbox Modal --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 85%;
+            max-height: 85vh;
+            border: 2px solid var(--gold);
+            animation: zoom 0.3s ease;
+        }
+
+        @keyframes zoom { from {transform: scale(0.8);} to {transform: scale(1);} }
+
+        .close-btn {
+            position: absolute;
+            top: 30px; right: 50px;
+            color: var(--gold);
+            font-size: 60px;
+            cursor: pointer;
+        }
+
+        /* --- Footer --- */
+        footer { padding: 50px; background: #000; color: #555; font-size: 0.9rem; }
+        .social-link { color: var(--gold); text-decoration: none; font-weight: bold; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.8rem; }
+            nav { flex-wrap: wrap; }
+            nav a { margin: 5px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="reveal">
+            <h1>SK CREATION</h1>
+            <div class="slogan">Excellence of Quality Work</div>
+        </div>
+    </header>
+
+    <nav>
+        <a href="#about">About Us</a>
+        <a href="#work">Our Work</a>
+        <a href="#faculty">Our Faculty</a>
+        <a href="#designs">Our Designs</a>
+    </nav>
+
+    <section id="about">
+        <div class="reveal">
+            <h2>About Us</h2>
+            <p style="max-width: 800px; margin: 0 auto 30px; line-height: 1.9;">
+                𝐖𝐞 𝐭𝐮𝐫𝐧 𝐲𝐨𝐮𝐫 𝐝𝐫𝐞𝐚𝐦𝐬 𝐢𝐧𝐭𝐨 𝐫𝐞𝐚𝐥𝐢𝐭𝐲 𝐰𝐢𝐭𝐡 𝐞𝐱𝐜𝐞𝐥𝐥𝐞𝐧𝐭 𝐪𝐮𝐚𝐥𝐢𝐭𝐲 𝐚𝐧𝐝 𝐦𝐨𝐝𝐞𝐫𝐧 𝐝𝐞𝐬𝐢𝐠𝐧.
+                     𝐀 𝐩𝐫𝐨𝐟𝐞𝐬𝐬𝐢𝐨𝐧𝐚𝐥 𝐭𝐞𝐚𝐦 𝐭𝐡𝐚𝐭 𝐦𝐚𝐤𝐞𝐬 𝐞𝐯𝐞𝐫𝐲 𝐭𝐚𝐬𝐤 𝐨𝐟 𝐲𝐨𝐮𝐫𝐬 𝐩𝐞𝐫𝐟𝐞𝐜𝐭.
+            </p>
+            <p><strong>Contact:</strong> +91 98XXXXXXXX</p>
+            <p><strong>Instagram:</strong> <a href="https://www.instagram.com/imsxurxbh?igsh=MTV5cTdnaWFvaHJ1eg==" target="_blank" class="social-link">@imsxurxbh</a></p>
+        </div>
+    </section>
+
+    <section id="work" style="background-color: #0a0a0a;">
+        <h2>Our Work</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Lightning Work</h3>
+                <p>Professional lighting setup for grand events.</p>
+            </div>
+            <div class="card">
+                <h3>Stall Contractor</h3>
+                <p>Award-winning exhibition stall designs.</p>
+            </div>
+            <div class="card">
+                <h3>Vending Machine</h3>
+                <p>Customized vending solutions for businesses.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="faculty">
+        <h2>Our Faculty</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Prashant Kumar</h3>
+                <p style="color: var(--gold);">Founder</p>
+            </div>
+            <div class="card">
+                <h3>Saurabh</h3>
+                <p style="color: var(--gold);">Lead Designer</p>
+            </div>
+            <div class="card">
+                <h3>Deepak Kumar</h3>
+                <p style="color: var(--gold);">Senior Contractor</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="designs" style="background-color: #0a0a0a;">
+        <h2>Our Designs</h2>
+        <p style="margin-bottom: 30px; color: #777;">(Click on any image to zoom)</p>
+        <div class="gallery">
+            <img src="demo.jpg">
+            <img src="demo1.jpg">
+            <img src="demo2.jpg">
+            <img src="demo3.jpg">
+            <img src="demo4.jpg">
+            <img src="demo5.jpg">
+            <img src="demo6.jpg">
+            <img src="demo7.jpg">
+         </div>
+    </section>
+
+    <div id="imageModal" class="modal">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="bigImg">
+    </div>
+
+    <footer>
+        &copy; 2026 SK CREATION. All Rights Reserved. <br>
+        Developed for Excellence.
+    </footer>
+
+    <script>
+        // Lightbox Logic
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("bigImg");
+        const images = document.querySelectorAll(".gallery img");
+
+        images.forEach(img => {
+            img.onclick = function() {
+                modal.style.display = "flex";
+                modalImg.src = this.src;
+            }
+        });
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        // Close modal if clicked outside image
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+
+</body>
+</html>
