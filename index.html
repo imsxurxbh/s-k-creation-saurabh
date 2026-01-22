@@ -1,296 +1,504 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SK CREATION | Premium Designer & Contractor</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SK CREATION | Premium Designer & Contractor</title>
 
-    <style>
-        :root {
-            --gold: #D4AF37;
-            --dark: #0f0f0f;
-            --gray: #1a1a1a;
-            --light: #ffffff;
-        }
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-        * { box-sizing: border-box; }
+  <!-- Model Viewer Script (must be in head) -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
-        body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--dark);
-            color: var(--light);
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
+  <style>
+    :root {
+      --gold: #D4AF37;
+      --dark: #0f0f0f;
+      --gray: #1a1a1a;
+      --light: #ffffff;
+      --muted: #aaaaaa;
+    }
 
-        /* --- Animations --- */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
-        .reveal { animation: fadeIn 1s ease-out forwards; }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--dark);
+      color: var(--light);
+      overflow-x: hidden;
+    }
 
-        /* --- Header & Hero --- */
-        header {
-            height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
-                        url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80');
-            background-size: cover;
-            background-attachment: fixed;
-            border-bottom: 4px solid var(--gold);
-        }
+    /* --- Animations --- */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes glow {
+      0% { text-shadow: 0 0 6px rgba(212,175,55,0.4); }
+      50% { text-shadow: 0 0 18px rgba(212,175,55,0.8); }
+      100% { text-shadow: 0 0 6px rgba(212,175,55,0.4); }
+    }
+    .reveal { animation: fadeInUp 1s ease-out forwards; }
 
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 5rem;
-            color: var(--gold);
-            margin: 0;
-            letter-spacing: 8px;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-        }
+    /* --- Header & Hero --- */
+    header {
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
+                  url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80');
+      background-size: cover;
+      background-attachment: fixed;
+      border-bottom: 4px solid var(--gold);
+    }
 
-        .slogan {
-            font-size: 1.2rem;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            color: #ccc;
-            margin-top: 10px;
-        }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      color: var(--gold);
+      margin: 0;
+      letter-spacing: 8px;
+      animation: glow 3s ease-in-out infinite;
+    }
 
-        /* --- Navigation --- */
-        nav {
-            background: rgba(26, 26, 26, 0.95);
-            padding: 20px;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            border-bottom: 1px solid #333;
-        }
+    .slogan {
+      font-size: 1.2rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: #ccc;
+      margin-top: 10px;
+      animation: fadeInUp 1.2s ease-out;
+    }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 20px;
-            font-weight: 500;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
+    /* --- Navigation --- */
+    nav {
+      background: rgba(26, 26, 26, 0.95);
+      padding: 16px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      border-bottom: 1px solid #333;
+      backdrop-filter: blur(4px);
+    }
 
-        nav a:hover { color: var(--gold); }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 18px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      transition: color 0.25s ease, transform 0.25s ease;
+    }
+    nav a:hover { color: var(--gold); transform: translateY(-2px); }
 
-        /* --- Sections Style --- */
-        section { padding: 100px 10%; text-align: center; }
-        h2 { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--gold); margin-bottom: 50px; }
+    /* --- Sections Style --- */
+    section { padding: 100px 10%; text-align: center; }
+    h2 { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--gold); margin-bottom: 50px; }
 
-        /* --- Cards & Grid --- */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
+    /* --- Cards & Grid --- */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
 
-        .card {
-            background: var(--gray);
-            padding: 40px;
-            border-radius: 15px;
-            border: 1px solid #333;
-            transition: 0.4s;
-        }
+    .card {
+      background: var(--gray);
+      padding: 40px;
+      border-radius: 15px;
+      border: 1px solid #333;
+      transition: 0.35s ease;
+    }
+    .card:hover {
+      border-color: var(--gold);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 12px 32px rgba(212, 175, 55, 0.15);
+    }
+    .card h3 { color: var(--gold); font-size: 1.5rem; margin-bottom: 12px; }
+    .card p { color: #ddd; }
 
-        .card:hover {
-            border-color: var(--gold);
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
-        }
+    /* --- Gallery --- */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .gallery img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.5s;
+      filter: grayscale(30%);
+      border: 1px solid #333;
+    }
+    .gallery img:hover { filter: grayscale(0%); transform: scale(1.03); }
 
-        .card h3 { color: var(--gold); font-size: 1.5rem; margin-bottom: 15px; }
+    /* --- Lightbox Modal --- */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.95);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      max-width: 85%;
+      max-height: 85vh;
+      border: 2px solid var(--gold);
+      animation: zoom 0.3s ease;
+    }
+    @keyframes zoom { from {transform: scale(0.8);} to {transform: scale(1);} }
+    .close-btn {
+      position: absolute;
+      top: 30px; right: 50px;
+      color: var(--gold);
+      font-size: 60px;
+      cursor: pointer;
+    }
 
-        /* --- Gallery --- */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-        }
+    /* --- Why Choose Us --- */
+    .why-us {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .why-card {
+      background: linear-gradient(180deg, #121212, #0a0a0a);
+      border: 1px solid #2a2a2a;
+      border-radius: 14px;
+      padding: 28px;
+      transition: 0.35s ease;
+    }
+    .why-card:hover { transform: translateY(-6px); border-color: var(--gold); }
+    .why-icon {
+      width: 64px; height: 64px;
+      margin: 0 auto 14px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      display: grid; place-items: center;
+      color: var(--gold); font-weight: 700;
+      box-shadow: 0 0 18px rgba(212,175,55,0.2);
+    }
+    .why-card h4 { color: var(--gold); margin: 10px 0 8px; font-size: 1.2rem; }
+    .why-card p { color: #cfcfcf; font-size: 0.95rem; line-height: 1.7; }
 
-        .gallery img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: 0.5s;
-            filter: grayscale(30%);
-        }
+    /* --- Contact Form --- */
+    .contact-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      background: #0b0b0b;
+      border: 1px solid #2a2a2a;
+      border-radius: 16px;
+      padding: 28px;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .contact-grid input, .contact-wrap textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 10px;
+      border: 1px solid #2a2a2a;
+      background: #121212;
+      color: #eee;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .contact-grid input:focus, .contact-wrap textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(212,175,55,0.15);
+    }
+    .contact-wrap textarea { min-height: 140px; resize: vertical; }
+    .btn-primary {
+      background: var(--gold);
+      color: #111;
+      padding: 14px 18px;
+      border: none;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.3s ease;
+      width: 100%;
+      margin-top: 10px;
+    }
+    .btn-primary:hover { background: #c9a437; }
 
-        .gallery img:hover { filter: grayscale(0%); transform: scale(1.03); }
+    /* --- Footer --- */
+    footer {
+      padding: 50px;
+      background: #000;
+      color: var(--muted);
+      font-size: 0.95rem;
+      text-align: center;
+      position: relative;
+      border-top: 1px solid #222;
+    }
+    .social-icons {
+      margin-top: 12px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+    }
+    .social-icons a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+      border: 1px solid #2a2a2a;
+      padding: 8px 12px;
+      border-radius: 999px;
+      transition: 0.25s ease;
+    }
+    .social-icons a:hover { border-color: var(--gold); transform: translateY(-2px); }
 
-        /* --- Lightbox Modal --- */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95);
-            justify-content: center;
-            align-items: center;
-        }
+    /* --- Back to Top Button --- */
+    #backToTop {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--gold);
+      color: #111;
+      padding: 12px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      cursor: pointer;
+      display: none;
+      z-index: 1200;
+      box-shadow: 0 8px 22px rgba(212,175,55,0.25);
+      border: none;
+    }
 
-        .modal-content {
-            max-width: 85%;
-            max-height: 85vh;
-            border: 2px solid var(--gold);
-            animation: zoom 0.3s ease;
-        }
-
-        @keyframes zoom { from {transform: scale(0.8);} to {transform: scale(1);} }
-
-        .close-btn {
-            position: absolute;
-            top: 30px; right: 50px;
-            color: var(--gold);
-            font-size: 60px;
-            cursor: pointer;
-        }
-
-        /* --- Footer --- */
-        footer { padding: 50px; background: #000; color: #555; font-size: 0.9rem; }
-        .social-link { color: var(--gold); text-decoration: none; font-weight: bold; }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2.8rem; }
-            nav { flex-wrap: wrap; }
-            nav a { margin: 5px 10px; }
-        }
-    </style>
+    /* --- Responsive --- */
+    @media (max-width: 992px) {
+      section { padding: 80px 6%; }
+    }
+    @media (max-width: 768px) {
+      h1 { font-size: 2.8rem; letter-spacing: 3px; }
+      nav { flex-wrap: wrap; }
+      nav a { margin: 6px 10px; }
+      .gallery img { height: 180px; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <div class="reveal">
-            <h1>SK CREATION</h1>
-            <div class="slogan">Excellence of Quality Work</div>
-        </div>
-    </header>
+  <!-- Header -->
+  <header>
+    <div class="reveal">
+      <h1>SK CREATION</h1>
+      <div class="slogan">Excellence of Quality Work</div>
+    </div>
+  </header>
 
-    <nav>
-        <a href="#about">About Us</a>
-        <a href="#work">Our Work</a>
-        <a href="#faculty">Our Faculty</a>
-        <a href="#designs">Our Designs</a>
-    </nav>
+  <!-- Navigation -->
+  <nav>
+    <a href="#about">About Us</a>
+    <a href="#work">Our Work</a>
+    <a href="#faculty">Our Faculty</a>
+    <a href="#designs">Our Designs</a>
+    <a href="#why">Why Choose Us</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-    <section id="about">
-        <div class="reveal">
-            <h2>About Us</h2>
-            <p style="max-width: 800px; margin: 0 auto 30px; line-height: 1.9;">
-                𝐖𝐞 𝐭𝐮𝐫𝐧 𝐲𝐨𝐮𝐫 𝐝𝐫𝐞𝐚𝐦𝐬 𝐢𝐧𝐭𝐨 𝐫𝐞𝐚𝐥𝐢𝐭𝐲 𝐰𝐢𝐭𝐡 𝐞𝐱𝐜𝐞𝐥𝐥𝐞𝐧𝐭 𝐪𝐮𝐚𝐥𝐢𝐭𝐲 𝐚𝐧𝐝 𝐦𝐨𝐝𝐞𝐫𝐧 𝐝𝐞𝐬𝐢𝐠𝐧.
-                     𝐀 𝐩𝐫𝐨𝐟𝐞𝐬𝐬𝐢𝐨𝐧𝐚𝐥 𝐭𝐞𝐚𝐦 𝐭𝐡𝐚𝐭 𝐦𝐚𝐤𝐞𝐬 𝐞𝐯𝐞𝐫𝐲 𝐭𝐚𝐬𝐤 𝐨𝐟 𝐲𝐨𝐮𝐫𝐬 𝐩𝐞𝐫𝐟𝐞𝐜𝐭.
-            </p>
-            <p><strong>Contact:</strong> +91 98XXXXXXXX</p>
-            <p><strong>Instagram:</strong> <a href="https://www.instagram.com/imsxurxbh?igsh=MTV5cTdnaWFvaHJ1eg==" target="_blank" class="social-link">@imsxurxbh</a></p>
-        </div>
-    </section>
+  <!-- About -->
+  <section id="about">
+    <div class="reveal">
+      <h2>About Us</h2>
+      <p style="max-width: 800px; margin: 0 auto 30px; line-height: 1.9;">
+        𝐖𝐞 𝐭𝐮𝐫𝐧 𝐲𝐨𝐮𝐫 𝐝𝐫𝐞𝐚𝐦𝐬 𝐢𝐧𝐭𝐨 𝐫𝐞𝐚𝐥𝐢𝐭𝐲 𝐰𝐢𝐭𝐡 𝐞𝐱𝐜𝐞𝐥𝐥𝐞𝐧𝐭 𝐪𝐮𝐚𝐥𝐢𝐭𝐲 𝐚𝐧𝐝 𝐦𝐨𝐝𝐞𝐫𝐧 𝐝𝐞𝐬𝐢𝐠𝐧.
+        𝐀 𝐩𝐫𝐨𝐟𝐞𝐬𝐬𝐢𝐨𝐧𝐚𝐥 𝐭𝐞𝐚𝐦 𝐭𝐡𝐚𝐭 𝐦𝐚𝐤𝐞𝐬 𝐞𝐯𝐞𝐫𝐲 𝐭𝐚𝐬𝐤 𝐨𝐟 𝐲𝐨𝐮𝐫𝐬 𝐩𝐞𝐫𝐟𝐞𝐜𝐭.
+      </p>
+      <p><strong>Contact:</strong> +91 98XXXXXXXX</p>
+      <p><strong>Instagram:</strong> <a href="https://www.instagram.com/imsxurxbh?igsh=MTV5cTdnaWFvaHJ1eg==" target="_blank" class="social-link">@imsxurxbh</a></p>
+    </div>
+  </section>
 
-    <section id="work" style="background-color: #0a0a0a;">
-        <h2>Our Work</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Lightning Work</h3>
-                <p>Professional lighting setup for grand events.</p>
-            </div>
-            <div class="card">
-                <h3>Stall Contractor</h3>
-                <p>Award-winning exhibition stall designs.</p>
-            </div>
-            <div class="card">
-                <h3>Vending Machine</h3>
-                <p>Customized vending solutions for businesses.</p>
-            </div>
-        </div>
-    </section>
+  <!-- Our Work -->
+  <section id="work" style="background-color: #0a0a0a;">
+    <h2>Our Work</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Lightning Work</h3>
+        <p>Professional lighting setup for grand events.</p>
+      </div>
+      <div class="card">
+        <h3>Stall Contractor</h3>
+        <p>Award-winning exhibition stall designs.</p>
+      </div>
+      <div class="card">
+        <h3>Vending Machine</h3>
+        <p>Customized vending solutions for businesses.</p>
+      </div>
+      <div class="card">
+        <h3>Coffee Machine</h3>
+        <p>All Types Of Coffee Machines Are Available.</p>
+      </div>
+    </div>
+  </section>
 
-    <section id="faculty">
-        <h2>Our Faculty</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Prashant Kumar</h3>
-                <p style="color: var(--gold);">Founder</p>
-            </div>
-            <div class="card">
-                <h3>Saurabh</h3>
-                <p style="color: var(--gold);">Lead Designer</p>
-            </div>
-            <div class="card">
-                <h3>Deepak Kumar</h3>
-                <p style="color: var(--gold);">Senior Contractor</p>
-            </div>
-        </div>
-    </section>
+  <!-- Faculty -->
+  <section id="faculty">
+    <h2>Our Faculty</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Prashant Kumar</h3>
+        <p style="color: var(--gold);">Founder</p>
+      </div>
+      <div class="card">
+        <h3>Saurabh</h3>
+        <p style="color: var(--gold);">Lead Designer</p>
+      </div>
+      <div class="card">
+        <h3>Abhishek</h3>
+        <p style="color: var(--gold);">Organiser</p>
+      </div>
+      <div class="card">
+        <h3>Deepak Kumar</h3>
+        <p style="color: var(--gold);">Senior Contractor</p>
+      </div>
+    </div>
+  </section>
 
-    <section id="designs" style="background-color: #0a0a0a;">
-        <h2>Our Designs</h2>
-        <p style="margin-bottom: 30px; color: #777;">(Click on any image to zoom)</p>
-        <div class="gallery">
-            <img src="https://i.ibb.co/vvvWH1zF/demo.jpg">
-            <img src="https://i.ibb.co/Txv08F3j/demo1.jpg">
-            <img src="https://i.ibb.co/pvPryvqh/demo2.jpg">
-            <img src="https://i.ibb.co/hxR2CDp2/demo3.jpg">
-            <img src="https://i.ibb.co/KzWVL3Gv/demo4.jpg">
-            <img src="https://i.ibb.co/jZPChpfq/demo5.jpg">
-            <img src="https://i.ibb.co/SwNgFQdW/demo6.jpg">
-            <img src="https://i.ibb.co/nZK8vzF/demo7.jpg">
-            <img src="https://i.ibb.co/hxXn34Nn/demo8.jpg">
-         </div>
-    </section>
+  <!-- Our Designs -->
+  <section id="designs" style="background-color: #0a0a0a;">
+    <h2>Our Designs</h2>
+    <p style="margin-bottom: 30px; color: #777;">(Click on any image to zoom)</p>
 
-    <div id="imageModal" class="modal">
-        <span class="close-btn" onclick="closeModal()">&times;</span>
-        <img class="modal-content" id="bigImg">
+    <!-- 3D Model Viewer (use models/model1.glb if you moved it into models folder) -->
+    <div style="margin-top: 10px; margin-bottom: 40px;">
+      <h3 style="color: var(--gold); margin-bottom: 16px;">3D Stall Model</h3>
+      <model-viewer src="models/model1.glb" alt="3D Stall Model"
+        auto-rotate camera-controls shadow-intensity="1"
+        style="width: 100%; max-width: 900px; height: 520px; background-color: #111; border: 2px solid var(--gold); border-radius: 12px; margin: 0 auto;">
+      </model-viewer>
     </div>
 
-    <footer>
-        &copy; 2026 SK CREATION. All Rights Reserved. <br>
-        Developed for Excellence.
-    </footer>
+    <!-- Gallery -->
+    <div class="gallery">
+      <img src="https://ibb.co/wrrqRy6k" alt="Design 1">
+      <img src="https://ibb.co/NdVNjHBD" alt="Design 2">
+      <img src="https://ibb.co/1fnJ6fcz" alt="Design 3">
+      <img src="https://ibb.co/bjgN7zpN" alt="Design 4">
+      <img src="https://ibb.co/5xLsnf9H" alt="Design 5">
+      <img src="https://ibb.co/x8tnh4Lw" alt="Design 6">
+      <img src="https://ibb.co/GQ7DzstB" alt="Design 7">
+      <img src="https://ibb.co/CpJXRYyX" alt="Design 8">
+    </div>
+  </section>
 
-    <script>
-        // Lightbox Logic
-        const modal = document.getElementById("imageModal");
-        const modalImg = document.getElementById("bigImg");
-        const images = document.querySelectorAll(".gallery img");
+  <!-- Lightbox Modal -->
+  <div id="imageModal" class="modal">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="bigImg" alt="Zoomed image">
+  </div>
 
-        images.forEach(img => {
-            img.onclick = function() {
-                modal.style.display = "flex";
-                modalImg.src = this.src;
-            }
-        });
+  <!-- Why Choose Us -->
+  <section id="why">
+    <h2>Why Choose Us</h2>
+    <div class="why-us">
+      <div class="why-card">
+        <div class="why-icon">Q</div>
+        <h4>Premium Quality</h4>
+        <p>Top-grade materials, precise execution, and a finish that speaks for itself—every project meets our gold standard.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">D</div>
+        <h4>Modern Design</h4>
+        <p>Contemporary aesthetics tailored to your brand—we blend creativity with function for maximum impact.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">T</div>
+        <h4>On-Time Delivery</h4>
+        <p>Clear planning, disciplined execution, and reliable timelines—your event or installation is ready when you need it.</p>
+      </div>
+    </div>
+  </section>
 
-        function closeModal() {
-            modal.style.display = "none";
-        }
+  <!-- Contact -->
+  <section id="contact" style="background-color:#0a0a0a;">
+    <h2>Contact Us</h2>
+    <div class="contact-wrap">
+      <form name="contact-form" onsubmit="handleContact(event)">
+        <div class="contact-grid">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+        </div>
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <button class="btn-primary" type="submit">Send Message</button>
+        <p id="formStatus" style="margin-top:10px; color:#cfcfcf;"></p>
+      </form>
+    </div>
+  </section>
 
-        // Close modal if clicked outside image
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
-    </script>
+  <!-- Footer -->
+  <footer>
+    &copy; 2026 SK CREATION. All Rights Reserved. <br>
+    Developed for Excellence.
+    <div class="social-icons">
+      <a href="#about" aria-label="About">About</a>
+      <a href="#work" aria-label="Work">Work</a>
+      <a href="#contact" aria-label="Contact">Contact</a>
+      <a href="https://www.instagram.com/imsxurxbh?igsh=MTV5cTdnaWFvaHJ1eg==" target="_blank" aria-label="Instagram">@imsxurxbh</a>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button id="backToTop" title="Back to top">↑</button>
+
+  <script>
+    // Lightbox Logic
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("bigImg");
+    const images = document.querySelectorAll(".gallery img");
+
+    images.forEach(img => {
+      img.onclick = function() {
+        modal.style.display = "flex";
+        modalImg.src = this.src;
+      }
+    });
+
+    function closeModal() { modal.style.display = "none"; }
+
+    window.onclick = function(event) {
+      if (event.target == modal) { closeModal(); }
+    };
+
+    // Back to Top visibility
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTop.style.display = 'block';
+      } else {
+        backToTop.style.display = 'none';
+      }
+    });
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // Contact form (demo handler)
+    function handleContact(e) {
+      e.preventDefault();
+      const status = document.getElementById('formStatus');
+      status.textContent = "Thanks! Your message has been noted.";
+      e.target.reset();
+    }
+  </script>
 
 </body>
-
 </html>
-
