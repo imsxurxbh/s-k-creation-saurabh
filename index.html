@@ -1,313 +1,395 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SK CREATION | Premium Designer & Contractor</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SK CREATION | Premium Designer & Contractor</title>
 
-    <style>
-        :root {
-            --gold: #D4AF37;
-            --dark: #0f0f0f;
-            --gray: #1a1a1a;
-            --light: #ffffff;
-        }
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-        * { box-sizing: border-box; }
+  <style>
+    :root {
+      --gold: #D4AF37;
+      --dark: #0f0f0f;
+      --gray: #1a1a1a;
+      --light: #ffffff;
+      --muted: #aaaaaa;
+    }
 
-        body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--dark);
-            color: var(--light);
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
-        /* --- Animations --- */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--dark);
+      color: var(--light);
+      overflow-x: hidden;
+    }
 
-        .reveal { animation: fadeIn 1s ease-out forwards; }
+    /* --- Animations --- */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes glow {
+      0% { text-shadow: 0 0 6px rgba(212,175,55,0.4); }
+      50% { text-shadow: 0 0 18px rgba(212,175,55,0.8); }
+      100% { text-shadow: 0 0 6px rgba(212,175,55,0.4); }
+    }
+    .reveal { animation: fadeInUp 1s ease-out forwards; }
 
-        /* --- Header & Hero --- */
-        header {
-            height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
-                        url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80');
-            background-size: cover;
-            background-attachment: fixed;
-            border-bottom: 4px solid var(--gold);
-        }
+    /* --- Header & Hero --- */
+    header {
+      height: 60vh; /* ऊँचाई कम की गई */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
+                  url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80');
+      background-size: cover;
+      background-attachment: fixed;
+      border-bottom: 4px solid var(--gold);
+    }
 
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 5rem;
-            color: var(--gold);
-            margin: 0;
-            letter-spacing: 8px;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-        }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem; /* साइज़ छोटा किया गया */
+      color: var(--gold);
+      margin: 0;
+      letter-spacing: 5px;
+      animation: glow 3s ease-in-out infinite;
+    }
 
-        .slogan {
-            font-size: 1.2rem;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            color: #ccc;
-            margin-top: 10px;
-        }
+    .slogan {
+      font-size: 1rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #ccc;
+      margin-top: 10px;
+    }
 
-        /* --- Navigation --- */
-        nav {
-            background: rgba(26, 26, 26, 0.95);
-            padding: 20px;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            border-bottom: 1px solid #333;
-        }
+    /* --- Navigation --- */
+    nav {
+      background: rgba(26, 26, 26, 0.95);
+      padding: 12px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      border-bottom: 1px solid #333;
+      backdrop-filter: blur(4px);
+    }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 20px;
-            font-weight: 500;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: 500;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      transition: color 0.25s ease;
+    }
+    nav a:hover { color: var(--gold); }
 
-        nav a:hover { color: var(--gold); }
+    /* --- Sections Style --- */
+    section { padding: 60px 8%; text-align: center; } /* Padding कम की गई */
+    h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold); margin-bottom: 35px; }
 
-        /* --- Sections Style --- */
-        section { padding: 100px 10%; text-align: center; }
-        h2 { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--gold); margin-bottom: 50px; }
+    /* --- Cards & Grid (Updated for 4 Columns) --- */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Min-width कम किया */
+      gap: 20px;
+    }
 
-        /* --- Cards & Grid --- */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
+    /* लैपटॉप के लिए 4 कॉलम सेट किया */
+    @media (min-width: 1024px) {
+      .grid { grid-template-columns: repeat(4, 1fr); }
+    }
 
-        .card {
-            background: var(--gray);
-            padding: 40px;
-            border-radius: 15px;
-            border: 1px solid #333;
-            transition: 0.4s;
-        }
+    .card {
+      background: var(--gray);
+      padding: 25px; /* पैडिंग मीडियम की गई */
+      border-radius: 12px;
+      border: 1px solid #333;
+      transition: 0.35s ease;
+    }
+    .card:hover {
+      border-color: var(--gold);
+      transform: translateY(-5px);
+    }
+    .card h3 { color: var(--gold); font-size: 1.2rem; margin-bottom: 10px; }
+    .card p { color: #ddd; font-size: 0.9rem; }
 
-        .card:hover {
-            border-color: var(--gold);
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
-        }
+    /* --- New Responsive Items (Medium Size) --- */
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+    .item {
+      flex: 1 1 calc(25% - 15px); /* 4 items per row */
+      min-width: 180px;
+      background-color: var(--gray);
+      padding: 20px;
+      text-align: center;
+      border: 1px solid #333;
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
 
-        .card h3 { color: var(--gold); font-size: 1.5rem; margin-bottom: 15px; }
+    /* --- Gallery (Images Size Adjustment) --- */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .gallery img {
+      width: 100%;
+      height: 200px; /* हाइट कम की गई */
+      object-fit: cover;
+      border-radius: 8px;
+    }
 
-        /* --- Gallery --- */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-        }
+    /* --- Why Choose Us (4 Columns on Desktop) --- */
+    .why-us {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    @media (min-width: 992px) {
+        .why-us { grid-template-columns: repeat(3, 1fr); } /* 3 cards looks better here, you can change to 4 if needed */
+    }
 
-        .gallery img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: 0.5s;
-            filter: grayscale(30%);
-        }
+    .why-card {
+      background: #121212;
+      border: 1px solid #2a2a2a;
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .why-icon {
+      width: 50px; height: 50px;
+      font-size: 1rem;
+      margin: 0 auto 10px;
+      border: 2px solid var(--gold);
+      display: grid; place-items: center;
+      color: var(--gold);
+      border-radius: 50%;
+    }
+    .why-card h4 { font-size: 1.1rem; color: var(--gold); margin: 5px 0; }
+    .why-card p { font-size: 0.85rem; line-height: 1.6; }
 
-        .gallery img:hover { filter: grayscale(0%); transform: scale(1.03); }
+    /* --- Contact & Footer --- */
+    .contact-wrap { max-width: 650px; padding: 20px; }
+    .btn-primary { padding: 12px; font-size: 0.9rem; }
+    footer { padding: 30px; font-size: 0.85rem; }
 
-        /* --- Lightbox Modal --- */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95);
-            justify-content: center;
-            align-items: center;
-        }
+    /* --- Modal --- */
+    .modal-content { max-width: 70%; }
 
-        .modal-content {
-            max-width: 85%;
-            max-height: 85vh;
-            border: 2px solid var(--gold);
-            animation: zoom 0.3s ease;
-        }
-
-        @keyframes zoom { from {transform: scale(0.8);} to {transform: scale(1);} }
-
-        .close-btn {
-            position: absolute;
-            top: 30px; right: 50px;
-            color: var(--gold);
-            font-size: 60px;
-            cursor: pointer;
-        }
-
-        /* --- Footer --- */
-        footer { padding: 50px; background: #000; color: #555; font-size: 0.9rem; }
-        .social-link { color: var(--gold); text-decoration: none; font-weight: bold; }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2.8rem; }
-            nav { flex-wrap: wrap; }
-            nav a { margin: 5px 10px; }
-        }
-    </style>
-<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    @media (max-width: 768px) {
+      h1 { font-size: 2.2rem; }
+      h2 { font-size: 1.8rem; }
+      .grid, .container { grid-template-columns: repeat(2, 1fr); }
+      .item { flex: 1 1 calc(50% - 15px); }
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <div class="reveal">
-            <h1>SK CREATION</h1>
-            <div class="slogan">Excellence of Quality Work</div>
-        </div>
-    </header>
-
-    <nav>
-        <a href="#about">About Us</a>
-        <a href="#work">Our Work</a>
-        <a href="#faculty">Our Faculty</a>
-        <a href="#designs">Our Designs</a>
-    </nav>
-
-    <section id="about">
-        <div class="reveal">
-            <h2>About Us</h2>
-            <p style="max-width: 800px; margin: 0 auto 30px; line-height: 1.9;">
-                𝐖𝐞 𝐭𝐮𝐫𝐧 𝐲𝐨𝐮𝐫 𝐝𝐫𝐞𝐚𝐦𝐬 𝐢𝐧𝐭𝐨 𝐫𝐞𝐚𝐥𝐢𝐭𝐲 𝐰𝐢𝐭𝐡 𝐞𝐱𝐜𝐞𝐥𝐥𝐞𝐧𝐭 𝐪𝐮𝐚𝐥𝐢𝐭𝐲 𝐚𝐧𝐝 𝐦𝐨𝐝𝐞𝐫𝐧 𝐝𝐞𝐬𝐢𝐠𝐧.
-                     𝐀 𝐩𝐫𝐨𝐟𝐞𝐬𝐬𝐢𝐨𝐧𝐚𝐥 𝐭𝐞𝐚𝐦 𝐭𝐡𝐚𝐭 𝐦𝐚𝐤𝐞𝐬 𝐞𝐯𝐞𝐫𝐲 𝐭𝐚𝐬𝐤 𝐨𝐟 𝐲𝐨𝐮𝐫𝐬 𝐩𝐞𝐫𝐟𝐞𝐜𝐭.
-            </p>
-            <p><strong>Contact:</strong> +91 98XXXXXXXX</p>
-            <p><strong>Instagram:</strong> <a href="https://www.instagram.com/imsxurxbh?igsh=MTV5cTdnaWFvaHJ1eg==" target="_blank" class="social-link">@imsxurxbh</a></p>
-        </div>
-    </section>
-
-    <section id="work" style="background-color: #0a0a0a;">
-        <h2>Our Work</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Lightning Work</h3>
-                <p>Professional lighting setup for grand events.</p>
-            </div>
-            <div class="card">
-                <h3>Stall Contractor</h3>
-                <p>Award-winning exhibition stall designs.</p>
-            </div>
-            <div class="card">
-                <h3>Vending Machine</h3>
-                <p>Customized vending solutions for businesses.</p>
-            </div>
-      <div class="card">
-                <h3>Coffee Machine</h3>
-                <p>All Types Of Coffee Machines Are Aviable.</p>
-            </div>
-
-        </div>
-    </section>
-
-    <section id="faculty">
-        <h2>Our Faculty</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Prashant Kumar</h3>
-                <p style="color: var(--gold);">Founder</p>
-            </div>
-            <div class="card">
-                <h3>Saurabh</h3>
-                <p style="color: var(--gold);">Lead Designer</p>
-           </div>
-        <div class="card">
-                <h3>Abhishek</h3>
-                <p style="color: var(--gold);">Organiser</p>
-            </div>
-            <div class="card">
-                <h3>Deepak Kumar</h3>
-                <p style="color: var(--gold);">Senior Contractor</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="designs" style="background-color: #0a0a0a;">
-        <h2>Our Designs</h2>
-        <p style="margin-bottom: 30px; color: #777;">(Click on any image to zoom)</p>
-<div style="margin-top: 50px;">
-  <h3 style="color: var(--gold); margin-bottom: 20px;">3D Stall Model</h3>
-  <model-viewer src="models/model1.glb" alt="3D Stall Model"
-    auto-rotate camera-controls shadow-intensity="1"
-    style="width: 100%; max-width: 800px; height: 500px; background-color: #111; border: 2px solid var(--gold); border-radius: 10px;">
-  </model-viewer>
-</div>
-        <div class="gallery">
-            <img src="https://i.postimg.cc/tCcYj81R/demo.jpg" alt="Our Designs" width="400">
-            <img src="https://i.postimg.cc/HxLgjsRT/demo1.jpg" alt="Light Work" width="400">>
-            <img src="https://i.postimg.cc/q7JfZvkt/demo2.jpg" alt="Finishing" width="400">>
-            <img src="https://i.postimg.cc/8PLP2sVY/demo3.jpg" alt="3D Structure" width="400">>
-            <img src="https://i.postimg.cc/zB98MY2Y/demo4.jpg" alt="light work" width="400">>
-            <img src="https://i.postimg.cc/g2Yd1Dsn/demo5.jpg" alt="Our Designs" width="400">>
-            <img src="https://i.postimg.cc/0N4sMqst/demo6.jpg" alt="Finishing" width="400">>
-            <img src="https://i.postimg.cc/RCKBF8bq/demo7.jpg" alt="PAINT AND BANNER" width="400">>
-            <img src="https://i.postimg.cc/Hst10MmD/demo8.jpg" alt="good result" width="400">>
-            
-         </div>
-    </section>
-
-    <div id="imageModal" class="modal">
-        <span class="close-btn" onclick="closeModal()">&times;</span>
-        <img class="modal-content" id="bigImg">
+  <header>
+    <div class="reveal">
+      <h1>SK CREATION</h1>
+      <div class="slogan">Excellence of Quality Work</div>
     </div>
+  </header>
 
-    <footer>
-        &copy; 2026 SK CREATION. All Rights Reserved. <br>
-        Developed for Excellence.
-    </footer>
+  <nav>
+    <a href="#about">About Us</a>
+    <a href="#work">Our Work</a>
+    <a href="#faculty">Our Faculty</a>
+    <a href="#designs">Our Designs</a>
+    <a href="#special">Special Items</a>
+    <a href="#why">Why Choose Us</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-    <script>
-        // Lightbox Logic
-        const modal = document.getElementById("imageModal");
-        const modalImg = document.getElementById("bigImg");
-        const images = document.querySelectorAll(".gallery img");
+  <section id="about">
+    <div class="reveal">
+      <h2>About Us</h2>
+      <p style="max-width: 700px; margin: 0 auto 20px; line-height: 1.7; font-size: 0.95rem;">
+        We turn your dreams into reality with excellent quality and modern design. 
+        A professional team that makes every task of yours perfect.
+      </p>
+      <div style="font-size: 0.9rem;">
+        <p><strong>Contact:</strong> +91 987654321</p>
+        <p><strong>Instagram:</strong> <a href="https://www.instagram.com/imsxurxbh?igsh=MTV5cTdnaWFvaHJ1eg==" target="_blank" class="social-link">@imsxurxbh</a></p>
+      </div>
+    </div>
+  </section>
 
-        images.forEach(img => {
-            img.onclick = function() {
-                modal.style.display = "flex";
-                modalImg.src = this.src;
-            }
-        });
+  <section id="work" style="background-color: #0a0a0a;">
+    <h2>Our Work</h2>
+    <div class="grid">
+      <div class="card"><h3>Lightning Work</h3><p>Professional lighting setup.</p></div>
+      <div class="card"><h3>Stall Contractor</h3><p>Exhibition stall designs.</p></div>
+      <div class="card"><h3>Vending Machine</h3><p>Customized solutions.</p></div>
+      <div class="card"><h3>Coffee Machine</h3><p>All types available.</p></div>
+    </div>
+  </section>
 
-        function closeModal() {
-            modal.style.display = "none";
-        }
+  <section id="faculty">
+    <h2>Our Faculty</h2>
+    <div class="grid">
+      <div class="card"><h3>Prashant Kumar</h3><p style="color: var(--gold);">Founder</p></div>
+      <div class="card"><h3>Saurabh</h3><p style="color: var(--gold);">Lead Designer</p></div>
+      <div class="card"><h3>Abhishek</h3><p style="color: var(--gold);">Organiser</p></div>
+      <div class="card"><h3>Deepak Kumar</h3><p style="color: var(--gold);">Senior Contractor</p></div>
+    </div>
+  </section>
 
-        // Close modal if clicked outside image
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
-    </script>
+  <section id="designs" style="background-color: #0a0a0a;">
+    <h2>Our Designs</h2>
+    <div class="gallery">
+      <img src="https://i.postimg.cc/tCcYj81R/demo.jpg">
+      <img src="https://i.postimg.cc/HxLgjsRT/demo1.jpg">
+      <img src="https://i.postimg.cc/q7JfZvkt/demo2.jpg">
+      <img src="https://i.postimg.cc/8PLP2sVY/demo3.jpg">
+      <img src="https://i.postimg.cc/zB98MY2Y/demo4.jpg">
+      <img src="https://i.postimg.cc/g2Yd1Dsn/demo5.jpg">
+      <img src="https://i.postimg.cc/0N4sMqst/demo6.jpg">
+      <img src="https://i.postimg.cc/RCKBF8bq/demo7.jpg">
+    </div>
+  </section>
 
+  <section id="special">
+    <h2>Our Special Items</h2>
+    <div class="container">
+      <div class="item">Item 1</div>
+      <div class="item">Item 2</div>
+      <div class="item">Item 3</div>
+      <div class="item">Item 4</div>
+      <div class="item">Item 5</div>
+      <div class="item">Item 6</div>
+    </div>
+  </section>
+
+  <section id="why" style="background-color: #0a0a0a;">
+    <h2>Why Choose Us</h2>
+    <div class="why-us">
+      <div class="why-card"><div class="why-icon">Q</div><h4>Quality</h4><p>Top-grade materials and precise execution.</p></div>
+      <div class="why-card"><div class="why-icon">D</div><h4>Modern</h4><p>Contemporary aesthetics for your brand.</p></div>
+      <div class="why-card"><div class="why-icon">T</div><h4>On-Time</h4><p> Disciplined execution and reliable timelines.</p></div>
+    </div>
+  </section>
+
+<section id="contact" style="background-color: #0a0a0a; padding: 100px 10%; text-align: center;">
+  <h2 style="color: #D4AF37; font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 50px;">
+    Contact Us
+  </h2>
+
+  <div style="max-width: 780px; margin: 0 auto; background: #0b0b0b; border: 1px solid #2a2a2a; border-radius: 16px; padding: 28px;">
+    <form name="contact-form" onsubmit="handleContact(event)">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+        <input type="text" name="name" placeholder="Your Name" required
+          style="width: 100%; padding: 14px 16px; border-radius: 10px; border: 1px solid #2a2a2a; background: #121212; color: #eee; font-size: 1rem; outline: none;">
+        <input type="email" name="email" placeholder="Your Email" required
+          style="width: 100%; padding: 14px 16px; border-radius: 10px; border: 1px solid #2a2a2a; background: #121212; color: #eee; font-size: 1rem; outline: none;">
+      </div>
+
+      <!-- Phone Number Field -->
+      <input type="tel" name="phone" placeholder="Your Phone Number" required
+        style="width: 100%; padding: 14px 16px; border-radius: 10px; border: 1px solid #2a2a2a; background: #121212; color: #eee; font-size: 1rem; outline: none; margin-top: 16px;">
+
+      <textarea name="message" placeholder="Your Message" required
+        style="width: 100%; padding: 14px 16px; border-radius: 10px; border: 1px solid #2a2a2a; background: #121212; color: #eee; font-size: 1rem; outline: none; min-height: 140px; resize: vertical; margin-top: 16px;"></textarea>
+
+      <button type="submit"
+        style="background: #D4AF37; color: #111; padding: 14px 18px; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; transition: 0.3s ease; width: 100%; margin-top: 10px;">
+        Send Message
+      </button>
+
+      <p id="formStatus" style="margin-top:10px; color:#cfcfcf;"></p>
+    </form>
+  </div>
+</section>
+
+<script>
+  function handleContact(e) {
+    e.preventDefault();
+    const form = e.target;
+    const status = document.getElementById("formStatus");
+
+    fetch("https://sheetdb.io/api/v1/u9cwzq2ig4vgz", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        data: [
+          {
+            "NAME": form.name.value,
+            "EMAIL": form.email.value,
+            "PHONE NO.": form.phone.value,
+            "MESSAGE": form.message.value
+          }
+        ]
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.created) {
+        status.textContent = "✅ Your message has been sent successfully!";
+      } else {
+        status.textContent = "⚠️ Submission failed. Please check your sheet connection.";
+      }
+      form.reset();
+    })
+    .catch(error => {
+      status.textContent = "❌ Something went wrong. Please try again.";
+      console.error("Error:", error);
+    });
+  }
+</script>
+  <footer>
+    &copy; 2026 SK CREATION. All Rights Reserved.
+  </footer>
+
+  <button id="backToTop">↑</button>
+
+  <div id="imageModal" class="modal">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="bigImg">
+  </div>
+
+  <script>
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("bigImg");
+    const images = document.querySelectorAll(".gallery img");
+    images.forEach(img => {
+      img.onclick = function() { modal.style.display = "flex"; modalImg.src = this.src; }
+    });
+    function closeModal() { modal.style.display = "none"; }
+    window.onclick = function(event) { if (event.target == modal) { closeModal(); } };
+
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+    backToTop.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    function handleContact(e) {
+      e.preventDefault();
+      document.getElementById('formStatus').textContent = "Thanks! Your message has been noted.";
+      e.target.reset();
+    }
+  </script>
 </body>
 </html>
+
 
