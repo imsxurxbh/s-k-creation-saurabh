@@ -255,7 +255,7 @@
 
   <section id="designs" style="background-color: #0a0a0a;">
     <h2>Our Designs</h2>
-    <div class="gallery">
+     <div class="gallery">
       <img src="https://i.postimg.cc/tCcYj81R/demo.jpg">
       <img src="https://i.postimg.cc/HxLgjsRT/demo1.jpg">
       <img src="https://i.postimg.cc/q7JfZvkt/demo2.jpg">
@@ -264,8 +264,7 @@
       <img src="https://i.postimg.cc/g2Yd1Dsn/demo5.jpg">
       <img src="https://i.postimg.cc/0N4sMqst/demo6.jpg">
       <img src="https://i.postimg.cc/RCKBF8bq/demo7.jpg">
-    </div>
-  </section>
+    </div>  </section>
 
   <section id="special">
     <h2>Our Special Items</h2>
@@ -287,7 +286,7 @@
       <div class="why-card"><div class="why-icon">T</div><h4>On-Time</h4><p> Disciplined execution and reliable timelines.</p></div>
     </div>
   </section>
-
+<!-- Contact -->
 <section id="contact" style="background-color: #0a0a0a; padding: 100px 10%; text-align: center;">
   <h2 style="color: #D4AF37; font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 50px;">
     Contact Us
@@ -318,78 +317,5 @@
     </form>
   </div>
 </section>
-
-<script>
-  function handleContact(e) {
-    e.preventDefault();
-    const form = e.target;
-    const status = document.getElementById("formStatus");
-
-    fetch("https://sheetdb.io/api/v1/u9cwzq2ig4vgz", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        data: [
-          {
-            "NAME": form.name.value,
-            "EMAIL": form.email.value,
-            "PHONE NO.": form.phone.value,
-            "MESSAGE": form.message.value
-          }
-        ]
-      })
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.created) {
-        status.textContent = "✅ Your message has been sent successfully!";
-      } else {
-        status.textContent = "⚠️ Submission failed. Please check your sheet connection.";
-      }
-      form.reset();
-    })
-    .catch(error => {
-      status.textContent = "❌ Something went wrong. Please try again.";
-      console.error("Error:", error);
-    });
-  }
-</script>
-  <footer>
-    &copy; 2026 SK CREATION. All Rights Reserved.
-  </footer>
-
-  <button id="backToTop">↑</button>
-
-  <div id="imageModal" class="modal">
-    <span class="close-btn" onclick="closeModal()">&times;</span>
-    <img class="modal-content" id="bigImg">
-  </div>
-
-  <script>
-    const modal = document.getElementById("imageModal");
-    const modalImg = document.getElementById("bigImg");
-    const images = document.querySelectorAll(".gallery img");
-    images.forEach(img => {
-      img.onclick = function() { modal.style.display = "flex"; modalImg.src = this.src; }
-    });
-    function closeModal() { modal.style.display = "none"; }
-    window.onclick = function(event) { if (event.target == modal) { closeModal(); } };
-
-    const backToTop = document.getElementById('backToTop');
-    window.addEventListener('scroll', () => {
-      backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
-    });
-    backToTop.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    function handleContact(e) {
-      e.preventDefault();
-      document.getElementById('formStatus').textContent = "Thanks! Your message has been noted.";
-      e.target.reset();
-    }
-  </script>
-</body>
+  </body>
 </html>
-
-
