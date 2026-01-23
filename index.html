@@ -41,7 +41,7 @@
 
     /* --- Header & Hero --- */
     header {
-      height: 60vh; /* ऊँचाई कम की गई */
+      height: 60vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -56,7 +56,7 @@
 
     h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 3.5rem; /* साइज़ छोटा किया गया */
+      font-size: 3.5rem;
       color: var(--gold);
       margin: 0;
       letter-spacing: 5px;
@@ -82,6 +82,8 @@
       justify-content: center;
       border-bottom: 1px solid #333;
       backdrop-filter: blur(4px);
+      overflow-x: auto;
+      white-space: nowrap;
     }
 
     nav a {
@@ -96,54 +98,31 @@
     nav a:hover { color: var(--gold); }
 
     /* --- Sections Style --- */
-    section { padding: 60px 8%; text-align: center; } /* Padding कम की गई */
+    section { padding: 60px 8%; text-align: center; }
     h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold); margin-bottom: 35px; }
 
-    /* --- Cards & Grid (Updated for 4 Columns) --- */
+    /* --- Cards & Grid --- */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Min-width कम किया */
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 20px;
     }
-
-    /* लैपटॉप के लिए 4 कॉलम सेट किया */
     @media (min-width: 1024px) {
       .grid { grid-template-columns: repeat(4, 1fr); }
     }
 
     .card {
       background: var(--gray);
-      padding: 25px; /* पैडिंग मीडियम की गई */
+      padding: 25px;
       border-radius: 12px;
       border: 1px solid #333;
       transition: 0.35s ease;
     }
-    .card:hover {
-      border-color: var(--gold);
-      transform: translateY(-5px);
-    }
+    .card:hover { border-color: var(--gold); transform: translateY(-5px); }
     .card h3 { color: var(--gold); font-size: 1.2rem; margin-bottom: 10px; }
     .card p { color: #ddd; font-size: 0.9rem; }
 
-    /* --- New Responsive Items (Medium Size) --- */
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      justify-content: center;
-    }
-    .item {
-      flex: 1 1 calc(25% - 15px); /* 4 items per row */
-      min-width: 180px;
-      background-color: var(--gray);
-      padding: 20px;
-      text-align: center;
-      border: 1px solid #333;
-      border-radius: 8px;
-      font-size: 0.9rem;
-    }
-
-    /* --- Gallery (Images Size Adjustment) --- */
+    /* --- Gallery & Zoom Logic --- */
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -151,54 +130,55 @@
     }
     .gallery img {
       width: 100%;
-      height: 200px; /* हाइट कम की गई */
+      height: 200px;
       object-fit: cover;
       border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
     }
+    .gallery img:hover { opacity: 0.8; transform: scale(1.02); }
 
-    /* --- Why Choose Us (4 Columns on Desktop) --- */
-    .why-us {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
+    /* --- Modal CSS --- */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
     }
-    @media (min-width: 992px) {
-        .why-us { grid-template-columns: repeat(3, 1fr); } /* 3 cards looks better here, you can change to 4 if needed */
-    }
-
-    .why-card {
-      background: #121212;
-      border: 1px solid #2a2a2a;
-      border-radius: 12px;
-      padding: 20px;
-    }
-    .why-icon {
-      width: 50px; height: 50px;
-      font-size: 1rem;
-      margin: 0 auto 10px;
+    .modal-content {
+      max-width: 90%;
+      max-height: 80vh;
       border: 2px solid var(--gold);
-      display: grid; place-items: center;
-      color: var(--gold);
-      border-radius: 50%;
+      border-radius: 10px;
+      animation: zoom 0.3s ease-out;
     }
-    .why-card h4 { font-size: 1.1rem; color: var(--gold); margin: 5px 0; }
-    .why-card p { font-size: 0.85rem; line-height: 1.6; }
+    @keyframes zoom { from {transform:scale(0.7)} to {transform:scale(1)} }
+    .close-btn {
+      position: absolute;
+      top: 20px; right: 30px;
+      color: white; font-size: 40px; cursor: pointer;
+    }
 
-    /* --- Contact & Footer --- */
-    .contact-wrap { max-width: 650px; padding: 20px; }
-    .btn-primary { padding: 12px; font-size: 0.9rem; }
-    footer { padding: 30px; font-size: 0.85rem; }
+    /* --- Special Items --- */
+    .container { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
+    .item { flex: 1 1 calc(25% - 15px); min-width: 180px; background: var(--gray); padding: 20px; border-radius: 8px; border: 1px solid #333; }
 
-    /* --- Modal --- */
-    .modal-content { max-width: 70%; }
+    /* --- Why Us --- */
+    .why-us { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+    .why-card { background: #121212; border: 1px solid #2a2a2a; border-radius: 12px; padding: 20px; }
+    .why-icon { width: 50px; height: 50px; margin: 0 auto 10px; border: 2px solid var(--gold); display: grid; place-items: center; color: var(--gold); border-radius: 50%; }
 
+    /* Responsive Mobile */
     @media (max-width: 768px) {
-  }
-}
       h1 { font-size: 2.2rem; }
       h2 { font-size: 1.8rem; }
-      .grid, .container { grid-template-columns: repeat(2, 1fr); }
+      .grid { grid-template-columns: repeat(2, 1fr); }
       .item { flex: 1 1 calc(50% - 15px); }
+      nav a { font-size: 0.75rem; margin: 0 8px; }
     }
   </style>
 </head>
@@ -225,13 +205,10 @@
     <div class="reveal">
       <h2>About Us</h2>
       <p style="max-width: 700px; margin: 0 auto 20px; line-height: 1.7; font-size: 0.95rem;">
-        We turn your dreams into reality with excellent quality and modern design. 
-        A professional team that makes every task of yours perfect.
+        We turn your dreams into reality with excellent quality and modern design.
       </p>
-      <div style="font-size: 0.9rem;">
-        <p><strong>Contact:</strong> +91 987654321</p>
-        <p><strong>Instagram:</strong> <a href="https://www.instagram.com/imsxurxbh?igsh=MTV5cTdnaWFvaHJ1eg==" target="_blank" class="social-link">@imsxurxbh</a></p>
-      </div>
+      <p><strong>Contact:</strong> +91 987654321</p>
+      <p><strong>Instagram:</strong> <a href="https://www.instagram.com/imsxurxbh?igsh=MTV5cTdnaWFvaHJ1eg==" target="_blank" style="color:var(--gold); text-decoration:none;">@imsxurxbh</a></p>
     </div>
   </section>
 
@@ -257,16 +234,17 @@
 
   <section id="designs" style="background-color: #0a0a0a;">
     <h2>Our Designs</h2>
-     <div class="gallery">
-      <img src="https://i.postimg.cc/tCcYj81R/demo.jpg">
-      <img src="https://i.postimg.cc/HxLgjsRT/demo1.jpg">
-      <img src="https://i.postimg.cc/q7JfZvkt/demo2.jpg">
-      <img src="https://i.postimg.cc/8PLP2sVY/demo3.jpg">
-      <img src="https://i.postimg.cc/zB98MY2Y/demo4.jpg">
-      <img src="https://i.postimg.cc/g2Yd1Dsn/demo5.jpg">
-      <img src="https://i.postimg.cc/0N4sMqst/demo6.jpg">
-      <img src="https://i.postimg.cc/RCKBF8bq/demo7.jpg">
-    </div>  </section>
+    <div class="gallery">
+      <img src="https://i.postimg.cc/tCcYj81R/demo.jpg" alt="Design">
+      <img src="https://i.postimg.cc/HxLgjsRT/demo1.jpg" alt="Design">
+      <img src="https://i.postimg.cc/q7JfZvkt/demo2.jpg" alt="Design">
+      <img src="https://i.postimg.cc/8PLP2sVY/demo3.jpg" alt="Design">
+      <img src="https://i.postimg.cc/zB98MY2Y/demo4.jpg" alt="Design">
+      <img src="https://i.postimg.cc/g2Yd1Dsn/demo5.jpg" alt="Design">
+      <img src="https://i.postimg.cc/0N4sMqst/demo6.jpg" alt="Design">
+      <img src="https://i.postimg.cc/RCKBF8bq/demo7.jpg" alt="Design">
+    </div>
+  </section>
 
   <section id="special">
     <h2>Our Special Items</h2>
@@ -283,42 +261,165 @@
   <section id="why" style="background-color: #0a0a0a;">
     <h2>Why Choose Us</h2>
     <div class="why-us">
-      <div class="why-card"><div class="why-icon">Q</div><h4>Quality</h4><p>Top-grade materials and precise execution.</p></div>
-      <div class="why-card"><div class="why-icon">D</div><h4>Modern</h4><p>Contemporary aesthetics for your brand.</p></div>
-      <div class="why-card"><div class="why-icon">T</div><h4>On-Time</h4><p> Disciplined execution and reliable timelines.</p></div>
+      <div class="why-card"><div class="why-icon">Q</div><h4>Quality</h4><p>Top-grade materials.</p></div>
+      <div class="why-card"><div class="why-icon">D</div><h4>Modern</h4><p>Tailored aesthetics.</p></div>
+      <div class="why-card"><div class="why-icon">T</div><h4>On-Time</h4><p>Reliable timelines.</p></div>
     </div>
   </section>
-<!-- Contact -->
-<section id="contact" style="background-color: #0a0a0a; padding: 100px 10%; text-align: center;">
-  <h2 style="color: #D4AF37; font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 50px;">
-    Contact Us
-  </h2>
+<style>
+  /* --- Floating Animation CSS --- */
+  .input-group {
+    position: relative;
+    margin-bottom: 20px;
+    text-align: left;
+  }
 
-  <div style="max-width: 780px; margin: 0 auto; background: #0b0b0b; border: 1px solid #2a2a2a; border-radius: 16px; padding: 28px;">
-    <form name="contact-form" onsubmit="handleContact(event)">
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-        <input type="text" name="name" placeholder="Your Name" required
-          style="width: 100%; padding: 14px 16px; border-radius: 10px; border: 1px solid #2a2a2a; background: #121212; color: #eee; font-size: 1rem; outline: none;">
-        <input type="email" name="email" placeholder="Your Email" required
-          style="width: 100%; padding: 14px 16px; border-radius: 10px; border: 1px solid #2a2a2a; background: #121212; color: #eee; font-size: 1rem; outline: none;">
-      </div>
+  /* इनपुट बॉक्स का डिज़ाइन (काला बैकग्राउंड) */
+  .input-group input, 
+  .input-group textarea {
+    width: 100%;
+    padding: 14px 12px;
+    background-color: #121212 !important; /* बॉक्स को काला रखने के लिए */
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.3s ease;
+  }
 
-      <!-- Phone Number Field -->
-      <input type="tel" name="phone" placeholder="Your Phone Number" required
-        style="width: 100%; padding: 14px 16px; border-radius: 10px; border: 1px solid #2a2a2a; background: #121212; color: #eee; font-size: 1rem; outline: none; margin-top: 16px;">
+  /* लेबल (नाम) का डिज़ाइन */
+  .input-group label {
+    position: absolute;
+    top: 14px;
+    left: 12px;
+    color: #888;
+    font-size: 0.9rem;
+    pointer-events: none;
+    transition: 0.3s ease;
+    background: transparent;
+  }
 
-      <textarea name="message" placeholder="Your Message" required
-        style="width: 100%; padding: 14px 16px; border-radius: 10px; border: 1px solid #2a2a2a; background: #121212; color: #eee; font-size: 1rem; outline: none; min-height: 140px; resize: vertical; margin-top: 16px;"></textarea>
+  /* मेसेज बॉक्स के लिए लेबल */
+  .input-group textarea ~ label {
+    top: 14px;
+  }
 
-      <button type="submit"
-        style="background: #D4AF37; color: #111; padding: 14px 18px; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; transition: 0.3s ease; width: 100%; margin-top: 10px;">
-        Send Message
-      </button>
+  /* जब क्लिक हो तो लेबल ऊपर जाए और GOLD हो जाए */
+  .input-group input:focus ~ label,
+  .input-group input:valid ~ label,
+  .input-group textarea:focus ~ label,
+  .input-group textarea:valid ~ label {
+    top: -10px;
+    left: 10px;
+    font-size: 0.75rem;
+    color: #D4AF37;
+    background-color: #0b0b0b; /* पीछे की लाइन छुपाने के लिए */
+    padding: 0 5px;
+  }
 
-      <p id="formStatus" style="margin-top:10px; color:#cfcfcf;"></p>
-    </form>
-  </div>
+  /* क्लिक करने पर बॉर्डर गोल्डन हो जाए */
+  .input-group input:focus, 
+  .input-group textarea:focus {
+    border-color: #D4AF37;
+  }
+</style>
+
+<section id="contact" style="background-color: #0a0a0a; padding: 60px 8%; text-align: center;">
+    <h2 style="color: #D4AF37; font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 35px;">Contact Us</h2>
+    
+    <div style="max-width: 600px; margin: 0 auto; background: #0b0b0b; border: 1px solid #2a2a2a; border-radius: 16px; padding: 35px 28px 20px 28px;">
+      
+      <form id="sheetdb-form">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="input-group">
+            <input type="text" name="NAME" id="user_name" required>
+            <label for="user_name">NAME</label>
+          </div>
+          <div class="input-group">
+            <input type="email" name="EMAIL" id="user_email" required>
+            <label for="user_email">EMAIL</label>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <input type="tel" name="PHONE_NO" id="user_phone" required>
+          <label for="user_phone">PHONE_NO</label>
+        </div>
+
+        <div class="input-group">
+          <textarea name="MESSAGE" id="user_msg" required style="height: 100px; resize: vertical;"></textarea>
+          <label for="user_msg">MESSAGE</label>
+        </div>
+        
+        <button type="submit" id="submitBtn" style="background:#D4AF37; color:black; padding:14px; border:none; border-radius:8px; width:100%; font-weight:700; margin-top:5px; cursor:pointer;">Send Message</button>
+        
+        <p id="formStatus" style="margin-top:15px; font-weight: bold; min-height: 20px;"></p>
+      </form>
+    </div>
 </section>
-  </body>
-</html>
 
+<footer style="padding:40px; text-align:center; background:#000; font-size:0.8rem; color:gray; border-top:1px solid #222;">
+    &copy; 2026 SK CREATION. All Rights Reserved.
+</footer>
+
+<script>
+    // --- Image Zoom Logic ---
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("bigImg");
+    const images = document.querySelectorAll(".gallery img");
+
+    if(images.length > 0) {
+        images.forEach(img => {
+          img.onclick = function() {
+            if(modal) {
+                modal.style.display = "flex";
+                modalImg.src = this.src;
+            }
+          }
+        });
+    }
+
+    function closeModal() {
+      if(modal) modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        closeModal();
+      }
+    };
+
+    // --- Google Sheet (SheetDB) Integration ---
+    const form = document.getElementById('sheetdb-form');
+    const status = document.getElementById('formStatus');
+    const btn = document.getElementById('submitBtn');
+
+    if(form) {
+        form.addEventListener("submit", e => {
+          e.preventDefault();
+          
+          status.textContent = "YOUR QUERY SENDING... PLEASE WAIT...";
+          status.style.color = "#D4AF37";
+          btn.disabled = true;
+
+          fetch('https://sheetdb.io/api/v1/u9cwzq2ig4vgz', {
+            method: 'POST',
+            body: new FormData(form),
+          })
+          .then(response => response.json())
+          .then((data) => {
+            status.innerHTML = '<span style="color:#D4AF37;">THANK YOU!</span> <span style="color:white;">YOUR MESSAGE HAS BEEN RECEIVED. WE WILL CONTACT SHORTLY.</span>';
+            form.reset();
+            btn.disabled = false;
+          })
+          .catch(error => {
+            status.textContent = "ERROR: QUERY CANNOT BE SENT.";
+            status.style.color = "#ff474c";
+            btn.disabled = false;
+          });
+        });
+    }
+</script>
+</body>
+</html>
