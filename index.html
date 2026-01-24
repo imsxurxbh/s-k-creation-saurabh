@@ -72,7 +72,7 @@
       align-items: center;
       text-align: center;
       background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
-                  url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80');
+                  url("https://i.postimg.cc/Hsb9fZ7t/sk_1.jpg");
       background-size: cover;
       background-attachment: fixed;
       border-bottom: 4px solid var(--gold);
@@ -136,16 +136,29 @@
     }
 
     .card {
-      background: var(--gray);
-      padding: 25px;
-      border-radius: 12px;
-      border: 1px solid #333;
-      transition: 0.35s ease;
-    }
-    .card:hover { border-color: var(--gold); transform: translateY(-5px); }
-    .card h3 { color: var(--gold); font-size: 1.2rem; margin-bottom: 10px; }
-    .card p { color: #ddd; font-size: 0.9rem; }
+  background: var(--gray);
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid #333;
+  transition: 0.35s ease;
+}
 
+.card:hover {
+  border-color: var(--gold);
+  transform: scale(1.02) translateY(-5px); /* हल्का zoom + ऊपर उठना */
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); /* हल्का golden shadow */
+}
+
+.card h3 {
+  color: var(--gold);
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: #ddd;
+  font-size: 0.9rem;
+}
     /* --- Gallery & Zoom Logic --- */
     .gallery {
       display: grid;
@@ -209,7 +222,7 @@
 <body>
 
   <header>
-    <div class="reveal">
+    <div class="hero">
       <h1>SK CREATION</h1>
       <div class="slogan">Excellence of Quality Work</div>
     </div>
@@ -227,6 +240,7 @@
 
   <section id="about">
     <div class="reveal">
+
       <h2>About Us</h2>
       <p style="max-width: 700px; margin: 0 auto 20px; line-height: 1.7; font-size: 0.95rem;">
         We turn your dreams into reality with excellent quality and modern design.
@@ -246,15 +260,79 @@
     </div>
   </section>
 
-  <section id="faculty">
-    <h2>Our Faculty</h2>
-    <div class="grid">
-      <div class="card"><h3>Prashant Kumar</h3><p style="color: var(--gold);">Founder</p></div>
-      <div class="card"><h3>Saurabh</h3><p style="color: var(--gold);">Lead Designer</p></div>
-      <div class="card"><h3>Abhishek</h3><p style="color: var(--gold);">Organiser</p></div>
-      <div class="card"><h3>Deepak Kumar</h3><p style="color: var(--gold);">Senior Contractor</p></div>
+<section id="faculty">
+  <h2>Our Faculty</h2>
+  <div class="grid">
+    <div class="card" onclick="openModal('prashant.jpg')">
+      <h3>Prashant Kumar</h3>
+      <p style="color: var(--gold);">Founder</p>
     </div>
-  </section>
+    <div class="card" onclick="openModal('https://i.postimg.cc/FznpnyQN/saurabh.jpg')">
+      <h3>Saurabh</h3>
+      <p style="color: var(--gold);">Lead Designer</p>
+    </div>
+    <div class="card" onclick="openModal('abhishek.jpg')">
+      <h3>Abhishek</h3>
+      <p style="color: var(--gold);">Organiser</p>
+    </div>
+    <div class="card" onclick="openModal('deepak.jpg')">
+      <h3>Deepak Kumar</h3>
+      <p style="color: var(--gold);">Senior Contractor</p>
+    </div>
+  </div>
+</section>
+
+<!-- Modal Box -->
+<div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+     background:rgba(0,0,0,0.8); text-align:center; z-index:999;">
+  
+  <!-- Close Button -->
+  <span id="closeBtn" 
+        style="color:white; font-size:30px; cursor:pointer; position:absolute; top:70px; right:90px;">&times;</span>
+  
+  <!-- Image -->
+  <img id="modal-img" src="" 
+       style="margin-top:80px; max-width:%; max-height:50%; border:3px solid var(--gold); border-radius:10px;">
+</div>
+
+<script>
+function openModal(src) {
+  document.getElementById("modal-img").src = src;
+  document.getElementById("modal").style.display = "block";
+}
+
+// Close button click
+document.getElementById("closeBtn").addEventListener("click", function() {
+  document.getElementById("modal").style.display = "none";
+});
+
+// Optional: close modal when clicking outside image
+document.getElementById("modal").addEventListener("click", function(e) {
+  if (e.target.id === "modal") {
+    document.getElementById("modal").style.display = "none";
+  }
+});
+</script>
+</section>
+
+<!-- Modal Box -->
+<div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+     background:rgba(0,0,0,0.8); text-align:center; z-index:999;">
+  <span onclick="closeModal()" 
+        style="color:white; font-size:30px; cursor:pointer; position:absolute; top:20px; right:40px;">&times;</span>
+  <img id="modal-img" src="" 
+       style="margin-top:80px; max-width:80%; border:3px solid var(--gold); border-radius:10px;">
+</div>
+
+<script>
+function openModal(src) {
+  document.getElementById("modal-img").src = src;
+  document.getElementById("modal").style.display = "block";
+}
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
+}
+</script>
 
   <section id="designs" style="background-color: #0a0a0a;">
     <h2>Our Designs</h2>
@@ -283,72 +361,100 @@
   </section>
 
   <section id="why" style="background-color: #0a0a0a;">
-    <h2>Why Choose Us</h2>
-    <div class="why-us">
-      <div class="why-card"><div class="why-icon">Q</div><h4>Quality</h4><p>Top-grade materials.</p></div>
-      <div class="why-card"><div class="why-icon">D</div><h4>Modern</h4><p>Tailored aesthetics.</p></div>
-      <div class="why-card"><div class="why-icon">T</div><h4>On-Time</h4><p>Reliable timelines.</p></div>
+  <h2>Why Choose Us</h2>
+  <div class="why-us">
+    <div class="why-card">
+      <div class="why-icon">Q</div>
+      <h4>Quality</h4>
+      <p>Top-grade materials.</p>
     </div>
-  </section>
+    <div class="why-card">
+      <div class="why-icon">D</div>
+      <h4>Modern</h4>
+      <p>Tailored aesthetics.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">T</div>
+      <h4>On-Time</h4>
+      <p>Reliable timelines.</p>
+    </div>
+  </div>
+</section>
+
 <style>
-  /* --- Floating Animation CSS --- */
-  .input-group {
-    position: relative;
-    margin-bottom: 20px;
-    text-align: left;
-  }
+/* --- Why Card Hover Effect --- */
+.why-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-  /* इनपुट बॉक्स का डिज़ाइन (काला बैकग्राउंड) */
-  .input-group input, 
-  .input-group textarea {
-    width: 100%;
-    padding: 14px 12px;
-    background-color: #121212 !important; /* बॉक्स को काला रखने के लिए */
-    border: 1px solid #333;
-    border-radius: 8px;
-    color: white;
-    font-size: 1rem;
-    outline: none;
-    transition: 0.3s ease;
-  }
+.why-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-  /* लेबल (नाम) का डिज़ाइन */
-  .input-group label {
-    position: absolute;
-    top: 14px;
-    left: 12px;
-    color: #888;
-    font-size: 0.9rem;
-    pointer-events: none;
-    transition: 0.3s ease;
-    background: transparent;
-  }
+.why-card:hover {
+  transform: scale(1.02); /* हल्का zoom */
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); /* हल्का golden shadow */
+  border: 1px solid #D4AF37; /* golden border सिर्फ hover पर */
+}
+}}
 
-  /* मेसेज बॉक्स के लिए लेबल */
-  .input-group textarea ~ label {
-    top: 14px;
-  }
+/* --- Floating Animation CSS --- */
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+  text-align: left;
+}
 
-  /* जब क्लिक हो तो लेबल ऊपर जाए और GOLD हो जाए */
-  .input-group input:focus ~ label,
-  .input-group input:valid ~ label,
-  .input-group textarea:focus ~ label,
-  .input-group textarea:valid ~ label {
-    top: -10px;
-    left: 10px;
-    font-size: 0.75rem;
-    color: #D4AF37;
-    background-color: #0b0b0b; /* पीछे की लाइन छुपाने के लिए */
-    padding: 0 5px;
-  }
+/* इनपुट बॉक्स का डिज़ाइन (काला बैकग्राउंड) */
+.input-group input,
+.input-group textarea {
+  width: 100%;
+  padding: 14px 12px;
+  background-color: #121212 !important; /* बॉक्स को काला रखने के लिए */
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.3s ease;
+}
 
-  /* क्लिक करने पर बॉर्डर गोल्डन हो जाए */
-  .input-group input:focus, 
-  .input-group textarea:focus {
-    border-color: #D4AF37;
-  }
+/* लेबल (नाम) का डिज़ाइन */
+.input-group label {
+  position: absolute;
+  top: 14px;
+  left: 12px;
+  color: #888;
+  font-size: 0.9rem;
+  pointer-events: none;
+  transition: 0.3s ease;
+  background: transparent;
+}
+
+/* मेसेज बॉक्स के लिए लेबल */
+.input-group textarea ~ label {
+  top: 14px;
+}
+
+/* जब क्लिक हो तो लेबल ऊपर जाए और GOLD हो जाए */
+.input-group input:focus ~ label,
+.input-group input:valid ~ label,
+.input-group textarea:focus ~ label,
+.input-group textarea:valid ~ label {
+  top: -10px;
+  left: 10px;
+  font-size: 0.75rem;
+  color: #D4AF37;
+  background-color: #0b0b0b; /* पीछे की लाइन छुपाने के लिए */
+  padding: 0 5px;
+}
+
+/* क्लिक करने पर बॉर्डर गोल्डन हो जाए */
+.input-group input:focus,
+.input-group textarea:focus {
+  border-color: #D4AF37;
+}
 </style>
-
 <section id="contact" style="background-color: #0a0a0a; padding: 60px 8%; text-align: center;">
     <h2 style="color: #D4AF37; font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 35px;">Contact Us</h2>
     
@@ -382,7 +488,6 @@
       </form>
     </div>
 </section>
-
 <footer style="padding:40px; text-align:center; background:#000; font-size:0.8rem; color:gray; border-top:1px solid #222;">
     &copy; 2026 SK CREATION. All Rights Reserved.
 </footer>
@@ -453,3 +558,4 @@
 </script>
 </body>
 </html>
+
