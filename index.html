@@ -204,6 +204,25 @@
       .item { flex: 1 1 calc(50% - 15px); }
       nav a { font-size: 0.75rem; margin: 0 8px; }
     }
+.faculty-thumbs {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.faculty-thumbs img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.faculty-thumbs img:hover {
+  border-color: #D4AF37;
+}
+
   </style>
 </head>
 <body>
@@ -249,11 +268,40 @@
   <section id="faculty">
     <h2>Our Faculty</h2>
     <div class="grid">
-      <div class="card"><h3>Prashant Kumar</h3><p style="color: var(--gold);">Founder</p></div>
-      <div class="card"><h3>Saurabh</h3><p style="color: var(--gold);">Lead Designer</p></div>
-      <div class="card"><h3>Abhishek</h3><p style="color: var(--gold);">Organiser</p></div>
-      <div class="card"><h3>Deepak Kumar</h3><p style="color: var(--gold);">Senior Contractor</p></div>
-    </div>
+      <div class="card" onclick="openFacultyGallery([
+  'https://i.postimg.cc/vZccB6DH/prashant2.jpg',
+  'https://i.postimg.cc/XNkZDbtm/prashant1.jpg',
+  'https://i.postimg.cc/Dyzzjbr6/prashant3.jpg'
+])">
+  <h3>Prashant Kumar</h3>
+  <p style="color: var(--gold);">Founder</p>
+</div>
+<div class="card" onclick="openFacultyGallery([
+  'https://i.postimg.cc/FznpnyQN/saurabh.jpg',
+  'https://i.postimg.cc/4y4GqzVp/saurabh4.jpg',
+  'https://i.postimg.cc/0QsPdgNp/saurabh3.jpg',
+  'https://i.postimg.cc/5N79ckPy/saurabh2.jpg'
+])">
+  <h3>Saurabh</h3>
+  <p style="color: var(--gold);">Lead Designer</p>
+</div>
+    <div class="card" onclick="openFacultyGallery([
+  'https://i.postimg.cc/DyQcgHc5/abhishek1.jpg',
+  'https://i.postimg.cc/tJNV3QGK/abhishek3.avif',
+  'https://i.postimg.cc/QxSTV3b6/abhishek4.jpg'
+])">
+  <h3>Abhishek</h3>
+  <p style="color: var(--gold);">Organiser</p>
+</div>
+     <div class="card" onclick="openFacultyGallery([
+  'https://i.postimg.cc/vZB6VN2g/deepak2.jpg',
+  'https://i.postimg.cc/FHRJLBCm/deepak1.jpg',
+  'https://i.postimg.cc/Rh4WVsnm/deepak4.jpg',
+  'https://i.postimg.cc/FHRJLBCm/deepak1.jpg'
+])">
+  <h3>Deepak Kumar</h3>
+  <p style="color: var(--gold);">Contractor</p>
+</div>
   </section>
 
   <section id="designs" style="background-color: #0a0a0a;">
@@ -388,12 +436,31 @@
 </footer>
 <!-- IMAGE ZOOM MODAL -->
 <div id="imageModal" class="modal">
-  <span class="close-btn" onclick="closeModal()">&times;</span>
+  <span class="close-btn" onclick="closeModal()">×</span>
   <img class="modal-content" id="bigImg">
+  <div class="faculty-thumbs" id="facultyThumbs"></div>
 </div>
 
-
 <script>
+function openFacultyGallery(images) {
+  modal.style.display = "flex";
+
+  // main image
+  modalImg.src = images[0];
+
+  // thumbnails
+  const thumbs = document.getElementById("facultyThumbs");
+  thumbs.innerHTML = "";
+
+  images.forEach(img => {
+    const t = document.createElement("img");
+    t.src = img;
+    t.onclick = () => modalImg.src = img;
+    thumbs.appendChild(t);
+  });
+}
+
+
     // --- Image Zoom Logic ---
     const modal = document.getElementById("imageModal");
     const modalImg = document.getElementById("bigImg");
@@ -450,6 +517,11 @@
           });
         });
     }
+function openFacultyImage(imgSrc) {
+  modal.style.display = "flex";
+  modalImg.src = imgSrc;
+}
+
 </script>
 </body>
 </html>
