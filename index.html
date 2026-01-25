@@ -18,7 +18,7 @@
   z-index:9999;
 }
 .modal-content{
-  max-width:100%;
+  max-width:90%;
   max-height:85vh;
   border:2px solid #D4AF37;
   border-radius:10px;
@@ -41,10 +41,6 @@
     }
 
     * { box-sizing: border-box; }
-        max-width: 100%;
-  box-sizing: border-box;
-  padding-left: 16px;
-  padding-right: 16px;
     html { scroll-behavior: smooth; }
 
     body {
@@ -52,7 +48,6 @@
       font-family: 'Poppins', sans-serif;
       background-color: var(--dark);
       color: var(--light);
-      width: 100%;
       overflow-x: hidden;
     }
 
@@ -159,7 +154,7 @@
     }
     .gallery img {
       width: 100%;
-      height: auto;
+      height: 200px;
       object-fit: cover;
       border-radius: 8px;
       cursor: pointer;
@@ -179,7 +174,7 @@
       align-items: center;
     }
     .modal-content {
-      max-width: 100%;
+      max-width: 90%;
       max-height: 80vh;
       border: 2px solid var(--gold);
       border-radius: 10px;
@@ -203,35 +198,29 @@
 
     /* Responsive Mobile */
     @media (max-width: 768px) {
-        section {
-    width: 100%;
-    overflow-x: hidden;
-  }
-}
       h1 { font-size: 2.2rem; }
       h2 { font-size: 1.8rem; }
       .grid { grid-template-columns: repeat(2, 1fr); }
       .item { flex: 1 1 calc(50% - 15px); }
       nav a { font-size: 0.75rem; margin: 0 8px; }
-
-  /* MAIN IMAGE – mobile safe */
-.modal-content {
-  max-width: 100%;
-  max-height: 55vh;   /* 🔥 पहले 80vh था, यही problem थी */
-  object-fit: contain;
+    }
+.faculty-thumbs {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
 }
 
-/* Mobile specific */
-@media (max-width: 768px) {
-  .modal {
-    padding: 15px;
-    align-items: flex-start;
-  }
+.faculty-thumbs img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
 
-  .faculty-thumbs {
-    justify-content: center;
-    flex-wrap: wrap;
-  }
+.faculty-thumbs img:hover {
+  border-color: #D4AF37;
 }
 
   </style>
@@ -481,7 +470,6 @@ function openFacultyGallery(images) {
         images.forEach(img => {
           img.onclick = function() {
             if(modal) {
-             document.getElementById("facultyThumbs").innerHTML = "";
                 modal.style.display = "flex";
                 modalImg.src = this.src;
             }
@@ -490,13 +478,14 @@ function openFacultyGallery(images) {
     }
 
     function closeModal() {
-  modal.style.display = "none";
+      if(modal) modal.style.display = "none";
+    }
 
-  // 🔥 IMPORTANT RESET
-  modalImg.src = "";
-  const thumbs = document.getElementById("facultyThumbs");
-  if (thumbs) thumbs.innerHTML = "";
-}
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        closeModal();
+      }
+    };
 
     // --- Google Sheet (SheetDB) Integration ---
     const form = document.getElementById('sheetdb-form');
